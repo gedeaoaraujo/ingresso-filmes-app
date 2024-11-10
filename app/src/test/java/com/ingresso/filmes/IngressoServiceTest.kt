@@ -11,12 +11,13 @@ class IngressoServiceTest {
     @Test
     fun `Deve retornar a contagem de filmes maior que 0`() = runBlocking {
         val response = IngressoClient.ingressoService.getMovies()
-        assertTrue(response.count > 0)
+        val counter = response.body()?.count ?: 0
+        assertTrue(counter > 0)
     }
 
     @Test
     fun `Deve retornar a listagem de filmes nao vazia`() = runBlocking {
         val response = IngressoClient.ingressoService.getMovies()
-        assertTrue(response.items.isNotEmpty())
+        assertTrue(response.body()?.items.orEmpty().isNotEmpty())
     }
 }
