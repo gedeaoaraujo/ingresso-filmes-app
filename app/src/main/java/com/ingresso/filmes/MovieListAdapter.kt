@@ -15,7 +15,9 @@ class MovieListAdapter(
     ): RecyclerView.ViewHolder(binding.root){
         fun bind(item: MovieResponse) {
             binding.title.text = item.title
-            binding.premiereDate.text = item.premiereDate?.localDate ?: "Desconhecida"
+
+            val localDate = item.premiereDate?.localDate?.toBrDate()
+            binding.premiereDate.text = localDate ?: "Desconhecida"
         }
     }
 
