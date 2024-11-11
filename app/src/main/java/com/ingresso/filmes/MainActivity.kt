@@ -19,7 +19,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         enableEdgeToEdge()
-        window.navigationBarColor = getColor(R.color.black_gray)
+        window.statusBarColor = getColor(R.color.black_gray)
+        window.navigationBarColor = getColor(R.color.light_gray)
         WindowInsetsControllerCompat(window, window.decorView).apply {
             isAppearanceLightStatusBars = false
             isAppearanceLightNavigationBars = false
