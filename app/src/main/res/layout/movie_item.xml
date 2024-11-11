@@ -6,15 +6,16 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:padding="8dp"
-        android:layout_height="200dp"
+        android:layout_height="170dp"
         android:layout_width="match_parent">
 
         <androidx.cardview.widget.CardView
-            android:padding="8dp"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            app:cardCornerRadius="10dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:cardBackgroundColor="@color/light_gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent">
 
@@ -24,9 +25,10 @@
 
                 <ImageView
                     android:id="@+id/cover"
-                    android:padding="8dp"
-                    android:layout_width="150dp"
                     android:layout_height="0dp"
+                    android:layout_width="115dp"
+                    android:layout_marginEnd="8dp"
+                    app:layout_constraintHorizontal_bias="0"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@id/title"
@@ -34,42 +36,104 @@
                     />
 
                 <TextView
+                    android:text="99"
+                    android:textSize="10sp"
+                    android:padding="4dp"
+                    android:textColor="@color/white"
+                    android:id="@+id/content_rating"
+                    android:background="@color/orange"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="8dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/cover"
+                    />
+
+                <TextView
                     android:id="@+id/title"
-                    android:padding="8dp"
-                    android:textSize="20sp"
+                    android:maxLines="2"
+                    android:textSize="18sp"
+                    android:ellipsize="end"
                     android:text="Movie Title"
                     android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:gravity="center_vertical"
+                    android:paddingVertical="8dp"
+                    android:layout_height="wrap_content"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/cover"
-                    app:layout_constraintBottom_toTopOf="@id/premiere"
                     />
 
                 <TextView
                     android:id="@+id/premiere"
                     android:text="Estreia:"
-                    android:padding="8dp"
                     android:textStyle="bold"
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:layout_constraintStart_toEndOf="@id/cover"
+                    android:layout_width="wrap_content"
                     app:layout_constraintTop_toBottomOf="@id/title"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/premiere_date"
+                    app:layout_constraintStart_toStartOf="@id/title"
                     />
 
                 <TextView
                     android:id="@+id/premiere_date"
-                    android:padding="8dp"
                     android:text="99/99/9999"
                     android:layout_width="0dp"
+                    android:paddingStart="8dp"
                     android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/title"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toEndOf="@id/premiere"
+                    />
+
+                <TextView
+                    android:id="@+id/distributor"
+                    android:text="Estúdio:"
+                    android:textStyle="bold"
+                    android:layout_height="wrap_content"
+                    android:layout_width="wrap_content"
+                    app:layout_constraintStart_toStartOf="@id/premiere"
+                    app:layout_constraintTop_toBottomOf="@id/premiere_date"
+                    app:layout_constraintEnd_toStartOf="@id/distributor_name"
+                    />
+
+                <TextView
+                    android:id="@+id/distributor_name"
+                    android:text="Universal Pictures Brasil"
+                    android:layout_width="0dp"
+                    android:paddingStart="8dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/distributor"
+                    app:layout_constraintTop_toBottomOf="@id/premiere_date"
+                    />
+
+                <com.google.android.material.chip.Chip
+                    android:text="Drama"
+                    android:padding="8dp"
+                    android:textSize="12sp"
+                    android:id="@+id/genre"
+                    android:shadowColor="@android:color/transparent"
+                    android:textColor="@color/white"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:chipBackgroundColor="@color/azure"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/distributor"
+                    app:layout_constraintTop_toBottomOf="@id/distributor_name"
+                    />
+
+                <com.google.android.material.chip.Chip
+                    android:text="99min"
+                    android:padding="8dp"
+                    android:textSize="12sp"
+                    android:id="@+id/duration"
+                    android:textColor="@color/white"
+                    android:layout_marginStart="8dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/azure"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/genre"
+                    app:layout_constraintTop_toBottomOf="@id/distributor_name"
                     />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

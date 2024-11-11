@@ -1,8 +1,10 @@
 package com.ingresso.filmes
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import coil.load
 import com.ingresso.filmes.databinding.MovieItemBinding
 import com.ingresso.filmes.remote.responses.MovieResponse
 
@@ -18,6 +20,37 @@ class MovieListAdapter(
 
             val localDate = item.premiereDate?.localDate?.toBrDate()
             binding.premiereDate.text = localDate ?: "Desconhecida"
+
+            item.images.firstOrNull()?.also { image ->
+                binding.cover.load(image.url)
+            }
+
+            binding.genre.text = item.genres.firstOrNull().orEmpty()
+            binding.duration.text = buildString {
+                append(item.duration)
+                append("min")
+            }
+
+            binding.distributorName.text = item.distributor.ifBlank { "Desconhecido" }
+            formatContentRating(item.contentRating).also { contentRating ->
+                binding.contentRating.setBackgroundColor(getRatingColor(contentRating))
+                binding.contentRating.text = contentRating
+            }
+        }
+
+        private fun getRatingColor(contentRating: String): Int = when (contentRating) {
+            "? " -> Color.GRAY
+            "L " -> Color.GREEN
+            else -> Color.parseColor("#FE7500")
+        }
+
+        private fun formatContentRating(contentRating: String) = Regex("(\\w+)").let {
+            val matchResult = it.find(contentRating)
+            when(val result = matchResult?.value.orEmpty()){
+                "Verifique" -> "? "
+                "Livre" -> "L "
+                else -> result
+            }
         }
     }
 
