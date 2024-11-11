@@ -1,11 +1,10 @@
 package com.ingresso.filmes
 
-import com.ingresso.filmes.remote.IngressoClient
 import com.ingresso.filmes.remote.IngressoService
 import com.ingresso.filmes.remote.responses.MovieResponse
 
 class IngressoRepository(
-    private val service: IngressoService = IngressoClient.ingressoService
+    private val service: IngressoService
 ) {
 
     suspend fun loadMovies(): List<MovieResponse> {

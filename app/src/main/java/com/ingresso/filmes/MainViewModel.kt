@@ -9,7 +9,7 @@ import com.ingresso.filmes.remote.responses.MovieResponse
 import kotlinx.coroutines.launch
 
 class MainViewModel(
-    private val repository: IngressoRepository = IngressoRepository()
+    private val repository: IngressoRepository
 ): ViewModel() {
 
     private val _movies = MutableLiveData<List<MovieResponse>>()
