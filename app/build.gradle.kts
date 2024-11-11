@@ -56,6 +56,9 @@ dependencies {
     //Coil
     implementation(libs.coil)
 
+    //Koin
+    implementation(libs.koin.android)
+
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
