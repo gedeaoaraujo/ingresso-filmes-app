@@ -15,6 +15,9 @@ class MainViewModel(
     private val _movies = MutableLiveData<List<MovieResponse>>()
     val movies: LiveData<List<MovieResponse>> = _movies
 
+    private val _loading = MutableLiveData(true)
+    val loading: LiveData<Boolean> = _loading
+
     init {
         loadMovies()
     }
@@ -25,6 +28,8 @@ class MainViewModel(
             _movies.postValue(movies)
         } catch (t: Throwable){
             Log.e("Error", t.message.orEmpty())
+        } finally {
+            _loading.postValue(false)
         }
     }
 

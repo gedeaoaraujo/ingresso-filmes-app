@@ -33,6 +33,11 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        viewModel.loading.observe(this){ loading ->
+            binding.loading.changeVisibility(loading)
+            binding.moviesList.changeVisibility(loading.not())
+        }
+
         viewModel.movies.observe(this){ movies ->
             binding.moviesList.adapter = MovieListAdapter(movies)
         }
