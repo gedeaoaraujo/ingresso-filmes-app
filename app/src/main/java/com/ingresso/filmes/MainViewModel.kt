@@ -21,7 +21,7 @@ class MainViewModel(
     private val _movies = MutableLiveData<List<MovieResponse>>()
     val movies: LiveData<List<MovieResponse>> = _movies
 
-    private val _loading = MutableLiveData(true)
+    private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
 
     private val _error = MutableLiveData<Error>()
@@ -31,8 +31,9 @@ class MainViewModel(
         loadMovies()
     }
 
-    private fun loadMovies() = viewModelScope.launch {
+    fun loadMovies() = viewModelScope.launch {
         try {
+            _loading.postValue(true)
             val movies = repository.loadMovies()
             _movies.postValue(movies)
         } catch (t: UnknownHostException){

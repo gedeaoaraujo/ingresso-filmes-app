@@ -38,6 +38,7 @@ class MainActivity : AppCompatActivity() {
         dialog = AlertDialog.Builder(this)
             .setTitle(getString(R.string.error_dialog_title))
             .setPositiveButton(getString(R.string.error_dialog_button)) { dialog, _ ->
+                viewModel.loadMovies()
                 dialog.dismiss()
             }
             .setCancelable(false)
