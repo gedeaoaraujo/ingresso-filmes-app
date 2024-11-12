@@ -7,6 +7,12 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.ingresso.filmes.remote.responses.MovieResponse
 import kotlinx.coroutines.launch
+import java.net.UnknownHostException
+
+data class Error(
+    val isServerError: Boolean = false,
+    val message: String = ""
+)
 
 class MainViewModel(
     private val repository: IngressoRepository
@@ -18,6 +24,9 @@ class MainViewModel(
     private val _loading = MutableLiveData(true)
     val loading: LiveData<Boolean> = _loading
 
+    private val _error = MutableLiveData<Error>()
+    val error: LiveData<Error> = _error
+
     init {
         loadMovies()
     }
@@ -26,8 +35,12 @@ class MainViewModel(
         try {
             val movies = repository.loadMovies()
             _movies.postValue(movies)
+        } catch (t: UnknownHostException){
+            Log.e("Error", t.message.orEmpty())
+            _error.postValue(Error(isServerError = true))
         } catch (t: Throwable){
             Log.e("Error", t.message.orEmpty())
+            _error.postValue(Error(message = t.message.orEmpty()))
         } finally {
             _loading.postValue(false)
         }

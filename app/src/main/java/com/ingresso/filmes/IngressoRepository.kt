@@ -9,9 +9,6 @@ class IngressoRepository(
 
     suspend fun loadMovies(): List<MovieResponse> {
         val response = service.getMovies()
-        if (response.isSuccessful.not()) {
-            throw Throwable(response.message().orEmpty())
-        }
         return response.body()?.items.orEmpty()
     }
 
