@@ -18,9 +18,11 @@ object IngressoClient {
         .addInterceptor(loggingInterceptor)
         .build()
 
-    val ingressoService: IngressoService = Retrofit.Builder()
-        .baseUrl(BASE_URL)
-        .client(client)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build().create(IngressoService::class.java)
+    fun <T>createService(serviceClass: Class<T>): T {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .client(client)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build().create(serviceClass)
+    }
 }
