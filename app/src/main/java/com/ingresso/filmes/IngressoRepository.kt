@@ -9,7 +9,8 @@ class IngressoRepository(
 
     suspend fun loadMovies(): List<MovieResponse> {
         val response = service.getMovies()
-        return response.body()?.items.orEmpty()
+        val items = response.body()?.items
+        return items?.sortedBy { it.premiereDate?.localDate }.orEmpty()
     }
 
 }
