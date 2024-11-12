@@ -36,8 +36,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         dialog = AlertDialog.Builder(this)
-            .setTitle("Ocorreu um erro")
-            .setPositiveButton("Ok") { dialog, _ -> dialog.dismiss() }
+            .setTitle(getString(R.string.error_dialog_title))
+            .setPositiveButton(getString(R.string.error_dialog_button)) { dialog, _ ->
+                dialog.dismiss()
+            }
             .setCancelable(false)
             .create()
 
