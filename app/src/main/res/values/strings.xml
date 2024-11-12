@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Ingresso Filmes</string>
+    <string name="error_server">"Falha ao conectar-se ao Servidor, verifique sua conexão com a internet."</string>
 </resources>
