@@ -43,7 +43,6 @@
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintEnd_toEndOf="@id/card"
             app:layout_constraintTop_toBottomOf="@id/card"
-            app:layout_constraintStart_toStartOf="@id/card"
             />
 
         <TextView
@@ -55,11 +54,12 @@
             android:layout_width="80dp"
             android:layout_margin="16dp"
             android:layout_height="80dp"
+            app:drawableTint="@color/white"
             android:textColor="@color/white"
-            android:background="@color/azure"
-            android:drawableTint="@color/white"
+            android:backgroundTint="@color/azure"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:background="@drawable/rounded_button"
             app:layout_constraintStart_toEndOf="@id/card"
             app:drawableTopCompat="@drawable/star_border_24"
             />
@@ -73,9 +73,10 @@
             android:layout_margin="16dp"
             android:layout_height="80dp"
             android:textColor="@color/white"
-            android:background="@color/azure"
+            android:backgroundTint="@color/azure"
             android:src="@android:drawable/star_on"
             app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/rounded_button"
             app:layout_constraintStart_toEndOf="@id/card"
             app:layout_constraintTop_toBottomOf="@id/star"
             />
@@ -89,9 +90,10 @@
             android:layout_width="80dp"
             android:layout_height="80dp"
             android:textColor="@color/white"
-            android:background="@color/azure"
+            android:backgroundTint="@color/azure"
             android:src="@android:drawable/star_on"
             app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/rounded_button"
             app:layout_constraintStart_toEndOf="@id/card"
             app:layout_constraintTop_toBottomOf="@id/genre"
             />
