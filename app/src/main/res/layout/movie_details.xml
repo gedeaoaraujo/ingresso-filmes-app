@@ -62,11 +62,11 @@
                 android:layout_height="80dp"
                 app:drawableTint="@color/white"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/azure"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 android:background="@drawable/rounded_button"
                 app:layout_constraintStart_toEndOf="@id/card"
+                app:backgroundTint="@color/star_selected_unselected"
                 app:drawableTopCompat="@drawable/star_border_24"
                 />
 
