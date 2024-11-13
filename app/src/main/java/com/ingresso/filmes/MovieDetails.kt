@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import coil.load
 import com.ingresso.filmes.databinding.MovieDetailsBinding
 import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
@@ -33,8 +35,21 @@ class MovieDetails: Fragment() {
 
         viewModel.movies.observe(viewLifecycleOwner){ movies ->
             val movie = movies.find { it.id == viewModel.selectedMovieId }
+
+            movie?.images?.firstOrNull()?.also { image ->
+                binding.poster.load(image.url)
+            }
+
             binding.movieName.text = movie?.title.orEmpty()
             binding.synopsisText.text = movie?.synopsis.orEmpty()
+            binding.genre.text = "Gênero\n${movie?.genres?.first() ?: "?"}"
+            binding.rating.text = "Nota\n${movie?.rating?.toFloat() ?: 0.0}/10"
+
+            val director = movie?.director?.replace("\n", "")
+            binding.director.text = "Diretor: ${director ?: "Desconhecido"}"
+
+            binding.city.text = "Cidade: ${movie?.city ?: "Desconhecida"}"
+            binding.contentRating.text = "Classificação indicativa: ${movie?.contentRating ?: "?"}"
         }
     }
 
