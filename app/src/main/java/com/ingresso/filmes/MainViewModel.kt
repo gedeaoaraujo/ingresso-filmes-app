@@ -27,6 +27,9 @@ class MainViewModel(
     private val _error = MutableLiveData<Error>()
     val error: LiveData<Error> = _error
 
+    var selectedMovieId: String = "0"
+        private set
+
     init {
         loadMovies()
     }
@@ -45,6 +48,10 @@ class MainViewModel(
         } finally {
             _loading.postValue(false)
         }
+    }
+
+    fun setSelectedMovie(id: String) {
+        selectedMovieId = id
     }
 
 }
