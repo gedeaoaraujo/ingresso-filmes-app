@@ -54,7 +54,13 @@ class MovieListAdapter(
                 binding.contentRating.text = contentRating
             }
 
-            binding.card.setOnClickListener { onMovieSelected(item.id) }
+            binding.card.run {
+                setOnClickListener { onMovieSelected(item.id) }
+                if (item.inPreSale) {
+                    binding.presale.changeVisibility(true)
+                    setCardBackgroundColor(Color.parseColor("#FE7500"))
+                }
+            }
         }
 
         private fun getRatingColor(contentRating: String): Int = when (contentRating) {
