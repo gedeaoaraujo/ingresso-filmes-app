@@ -59,6 +59,9 @@ class MovieListAdapter(
                 if (item.inPreSale) {
                     binding.presale.changeVisibility(true)
                     setCardBackgroundColor(Color.parseColor("#FE7500"))
+                } else {
+                    binding.presale.changeVisibility(false)
+                    setCardBackgroundColor(Color.parseColor("#2A2A2A"))
                 }
             }
         }
