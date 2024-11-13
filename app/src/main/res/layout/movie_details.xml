@@ -23,7 +23,7 @@
                 android:id="@+id/poster"
                 android:scaleType="fitXY"
                 android:layout_width="200dp"
-                android:layout_height="250dp"
+                android:layout_height="280dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
