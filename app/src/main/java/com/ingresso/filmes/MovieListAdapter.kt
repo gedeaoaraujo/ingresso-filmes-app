@@ -1,5 +1,6 @@
 package com.ingresso.filmes
 
+import android.annotation.SuppressLint
 import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -9,9 +10,24 @@ import com.ingresso.filmes.databinding.MovieItemBinding
 import com.ingresso.filmes.remote.responses.MovieResponse
 
 class MovieListAdapter(
-    private val items: List<MovieResponse>,
     private val onMovieSelected: (String) -> Unit = {}
 ): RecyclerView.Adapter<MovieListAdapter.MovieViewHolder>(){
+
+    private var list: List<MovieResponse> = listOf()
+    private var filteredList: List<MovieResponse> = listOf()
+
+    fun submitList(items: List<MovieResponse>){
+        list = items
+        filteredList = items
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun searchText(text: String?) {
+        filteredList = if (text.isNullOrBlank()) list else {
+            list.filter {  it.title.contains(text, ignoreCase = true) }
+        }
+        notifyDataSetChanged()
+    }
 
     inner class MovieViewHolder(
         private val binding: MovieItemBinding
@@ -64,8 +80,9 @@ class MovieListAdapter(
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        holder.bind(items[position])
+        holder.bind(filteredList[position])
     }
 
-    override fun getItemCount(): Int = items.count()
+    override fun getItemCount(): Int = filteredList.count()
+
 }

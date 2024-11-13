@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.appcompat.app.AlertDialog
+import androidx.core.view.isVisible
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.ingresso.filmes.databinding.MoviesListBinding
@@ -47,11 +49,14 @@ class MoviesList: Fragment() {
             binding.moviesList.changeVisibility(loading.not())
         }
 
+        val movieListAdapter = MovieListAdapter { id ->
+            viewModel.setSelectedMovie(id)
+            findNavController().navigate(R.id.secondFragment)
+        }
+
+        binding.moviesList.adapter = movieListAdapter
         viewModel.movies.observe(viewLifecycleOwner){ movies ->
-            binding.moviesList.adapter = MovieListAdapter(movies){ id ->
-                viewModel.setSelectedMovie(id)
-                findNavController().navigate(R.id.secondFragment)
-            }
+            movieListAdapter.submitList(movies)
         }
 
         viewModel.error.observe(viewLifecycleOwner){ error ->
@@ -61,6 +66,14 @@ class MoviesList: Fragment() {
             else dialog.setMessage(error.message)
 
             if (dialog.isShowing.not()) dialog.show()
+        }
+
+        binding.search.setOnClickListener {
+            binding.searchText.run { changeVisibility(!isVisible) }
+        }
+
+        binding.searchText.doOnTextChanged { text, _, _, _ ->
+            movieListAdapter.searchText(text.toString())
         }
     }
 }
