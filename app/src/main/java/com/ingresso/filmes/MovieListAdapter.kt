@@ -9,7 +9,8 @@ import com.ingresso.filmes.databinding.MovieItemBinding
 import com.ingresso.filmes.remote.responses.MovieResponse
 
 class MovieListAdapter(
-    private val items: List<MovieResponse>
+    private val items: List<MovieResponse>,
+    private val onMovieSelected: (String) -> Unit = {}
 ): RecyclerView.Adapter<MovieListAdapter.MovieViewHolder>(){
 
     inner class MovieViewHolder(
@@ -36,6 +37,8 @@ class MovieListAdapter(
                 binding.contentRating.setBackgroundColor(getRatingColor(contentRating))
                 binding.contentRating.text = contentRating
             }
+
+            binding.card.setOnClickListener { onMovieSelected(item.id) }
         }
 
         private fun getRatingColor(contentRating: String): Int = when (contentRating) {
