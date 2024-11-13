@@ -40,6 +40,18 @@ class MovieDetails: Fragment() {
                 binding.poster.load(image.url)
             }
 
+            viewModel.starredMovies.find { it == movie?.id }.also {
+                binding.star.isSelected = it.isNullOrBlank().not()
+            }
+            binding.star.setOnClickListener {
+                if (binding.star.isSelected.not()){
+                    viewModel.setStarredMovie(movie?.id)
+                } else {
+                    viewModel.removeStarredMovie(movie?.id)
+                }
+                binding.star.isSelected = !binding.star.isSelected
+            }
+
             binding.movieName.text = movie?.title.orEmpty()
             binding.synopsisText.text = movie?.synopsis.orEmpty()
             binding.genre.text = "Gênero\n${movie?.genres?.first() ?: "?"}"

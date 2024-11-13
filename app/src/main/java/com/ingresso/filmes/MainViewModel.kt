@@ -30,6 +30,8 @@ class MainViewModel(
     var selectedMovieId: String = "0"
         private set
 
+    val starredMovies = mutableSetOf("")
+
     init {
         loadMovies()
     }
@@ -52,6 +54,16 @@ class MainViewModel(
 
     fun setSelectedMovie(id: String) {
         selectedMovieId = id
+    }
+
+    fun setStarredMovie(id: String?) {
+        if (id.orEmpty().isBlank()) return
+        starredMovies.add(id!!)
+    }
+
+    fun removeStarredMovie(id: String?) {
+        if (id.orEmpty().isBlank()) return
+        starredMovies.remove(id!!)
     }
 
 }
