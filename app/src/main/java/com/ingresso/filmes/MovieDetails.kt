@@ -61,15 +61,24 @@ class MovieDetails: Fragment() {
                 requireContext().startActivity(chooser)
             }
 
-            binding.movieName.text = movie?.title.orEmpty()
-            binding.synopsisText.text = movie?.synopsis.orEmpty()
-            binding.genre.text = "Gênero\n${movie?.genre ?: "?"}"
+            binding.movieName.text = movie.title
+            binding.synopsisText.text = movie.synopsis
+            binding.genre.text = buildString {
+                append("Gênero\n"); append(movie.genre)
+            }
 
-            val director = movie?.director?.replace("\n", "")
-            binding.director.text = "Diretor: ${director ?: "Desconhecido"}"
+            val director = movie.director.replace("\n", "")
+            binding.director.text = buildString {
+                append("Diretor: "); append(director)
+            }
 
-            binding.city.text = "Cidade: ${movie?.city ?: "Desconhecida"}"
-            binding.contentRating.text = "Classificação indicativa: ${movie?.contentRating ?: "?"}"
+            binding.city.text = buildString {
+                append("Cidade: "); append(movie.city)
+            }
+
+            binding.contentRating.text = buildString {
+                append("Classificação indicativa: "); append(movie.contentRating)
+            }
         }
     }
 
