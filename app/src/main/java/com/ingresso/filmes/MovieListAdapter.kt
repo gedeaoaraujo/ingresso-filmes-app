@@ -19,6 +19,7 @@ class MovieListAdapter(
     fun submitList(items: List<MovieEntity>){
         list = items
         filteredList = items
+        notifyItemRangeInserted(0, items.count())
     }
 
     @SuppressLint("NotifyDataSetChanged")
