@@ -40,9 +40,7 @@ class MovieDetails: Fragment() {
                 binding.poster.load(imageUrl)
             }
 
-            viewModel.starredMovies.find { it == movie?.id }.also {
-                binding.star.isSelected = it.isNullOrBlank().not()
-            }
+            binding.star.isSelected = movie?.starred == true
             binding.star.setOnClickListener {
                 if (binding.star.isSelected.not()){
                     viewModel.setStarredMovie(movie?.id)

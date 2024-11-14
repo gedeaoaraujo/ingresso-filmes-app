@@ -15,4 +15,10 @@ interface MovieDao {
     @Query("SELECT * FROM movie")
     fun listAll(): LiveData<List<MovieEntity>>
 
+    @Query("UPDATE movie SET starred = 1 WHERE movie.id = :id")
+    suspend fun bookmarkMovie(id: String)
+
+    @Query("UPDATE movie SET starred = 0 WHERE movie.id = :id")
+    suspend fun removeBookmark(id: String)
+
 }
