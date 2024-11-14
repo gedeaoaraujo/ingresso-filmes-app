@@ -1,5 +1,6 @@
 package com.ingresso.filmes
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -51,10 +52,18 @@ class MovieDetails: Fragment() {
                 binding.star.isSelected = !binding.star.isSelected
             }
 
+            binding.share.setOnClickListener {
+                val intent = Intent(Intent.ACTION_SEND).apply {
+                    type = "text/plain"
+                    putExtra(Intent.EXTRA_TEXT, movie.siteUrl)
+                }
+                val chooser = Intent.createChooser(intent, "Compartilhar via")
+                requireContext().startActivity(chooser)
+            }
+
             binding.movieName.text = movie?.title.orEmpty()
             binding.synopsisText.text = movie?.synopsis.orEmpty()
             binding.genre.text = "Gênero\n${movie?.genre ?: "?"}"
-            binding.rating.text = "Nota\n${movie?.rating?.toFloat() ?: 0.0}/10"
 
             val director = movie?.director?.replace("\n", "")
             binding.director.text = "Diretor: ${director ?: "Desconhecido"}"

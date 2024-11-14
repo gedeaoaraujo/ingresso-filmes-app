@@ -51,23 +51,19 @@
                 app:layout_constraintStart_toStartOf="@id/card"
                 />
 
-            <TextView
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:id="@+id/star"
                 android:padding="8dp"
-                android:textSize="16sp"
-                android:text="Favorito"
-                android:gravity="center"
+                app:tint="@color/white"
+                app:fabCustomSize="80dp"
                 android:layout_width="80dp"
                 android:layout_margin="16dp"
                 android:layout_height="80dp"
-                app:drawableTint="@color/white"
-                android:textColor="@color/white"
+                android:src="@drawable/star_border_24"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:background="@drawable/rounded_button"
                 app:layout_constraintStart_toEndOf="@id/card"
                 app:backgroundTint="@color/star_selected_unselected"
-                app:drawableTopCompat="@drawable/star_border_24"
                 />
 
             <TextView
@@ -79,27 +75,25 @@
                 android:layout_margin="16dp"
                 android:layout_height="80dp"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/azure"
+                android:backgroundTint="@color/black_gray"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:background="@drawable/rounded_button"
                 app:layout_constraintStart_toEndOf="@id/card"
                 app:layout_constraintTop_toBottomOf="@id/star"
                 />
 
-            <TextView
-                android:id="@+id/rating"
-                android:textSize="16sp"
-                android:gravity="center"
-                android:text="Nota\n0.0/10"
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                app:tint="@color/white"
+                android:id="@+id/share"
+                app:fabCustomSize="80dp"
                 android:layout_margin="16dp"
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:textColor="@color/white"
-                android:backgroundTint="@color/azure"
+                android:src="@drawable/share_24"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:background="@drawable/rounded_button"
                 app:layout_constraintStart_toEndOf="@id/card"
                 app:layout_constraintTop_toBottomOf="@id/genre"
+                android:backgroundTint="@android:color/holo_green_light"
                 />
 
             <TextView
