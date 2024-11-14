@@ -36,8 +36,8 @@ class MovieDetails: Fragment() {
         viewModel.movies.observe(viewLifecycleOwner){ movies ->
             val movie = movies.find { it.id == viewModel.selectedMovieId }
 
-            movie?.images?.firstOrNull()?.also { image ->
-                binding.poster.load(image.url)
+            movie?.imageUrl?.also { imageUrl ->
+                binding.poster.load(imageUrl)
             }
 
             viewModel.starredMovies.find { it == movie?.id }.also {
@@ -54,7 +54,7 @@ class MovieDetails: Fragment() {
 
             binding.movieName.text = movie?.title.orEmpty()
             binding.synopsisText.text = movie?.synopsis.orEmpty()
-            binding.genre.text = "Gênero\n${movie?.genres?.first() ?: "?"}"
+            binding.genre.text = "Gênero\n${movie?.genre ?: "?"}"
             binding.rating.text = "Nota\n${movie?.rating?.toFloat() ?: 0.0}/10"
 
             val director = movie?.director?.replace("\n", "")

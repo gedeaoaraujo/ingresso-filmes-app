@@ -7,16 +7,16 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.ingresso.filmes.databinding.MovieItemBinding
-import com.ingresso.filmes.remote.responses.MovieResponse
+import com.ingresso.filmes.local.MovieEntity
 
 class MovieListAdapter(
     private val onMovieSelected: (String) -> Unit = {}
 ): RecyclerView.Adapter<MovieListAdapter.MovieViewHolder>(){
 
-    private var list: List<MovieResponse> = listOf()
-    private var filteredList: List<MovieResponse> = listOf()
+    private var list: List<MovieEntity> = listOf()
+    private var filteredList: List<MovieEntity> = listOf()
 
-    fun submitList(items: List<MovieResponse>){
+    fun submitList(items: List<MovieEntity>){
         list = items
         filteredList = items
     }
@@ -32,17 +32,12 @@ class MovieListAdapter(
     inner class MovieViewHolder(
         private val binding: MovieItemBinding
     ): RecyclerView.ViewHolder(binding.root){
-        fun bind(item: MovieResponse) {
+        fun bind(item: MovieEntity) {
             binding.title.text = item.title
+            binding.premiereDate.text = item.localDate.toBrDate()
+            item.imageUrl?.also { imageUrl -> binding.cover.load(imageUrl) }
 
-            val localDate = item.premiereDate?.localDate?.toBrDate()
-            binding.premiereDate.text = localDate ?: "Desconhecida"
-
-            item.images.firstOrNull()?.also { image ->
-                binding.cover.load(image.url)
-            }
-
-            binding.genre.text = item.genres.firstOrNull().orEmpty()
+            binding.genre.text = item.genre
             binding.duration.text = buildString {
                 append(item.duration)
                 append("min")
