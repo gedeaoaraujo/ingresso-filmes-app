@@ -24,5 +24,6 @@ data class MovieEntity(
     val city: String,
     val imageUrl: String?,
     val genre: String,
+    val siteUrl: String,
     val starred: Boolean = false
 )

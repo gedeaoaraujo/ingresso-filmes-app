@@ -17,6 +17,7 @@ fun MovieResponse.toEntity(): MovieEntity {
         localDate = premiereDate?.localDate.orEmpty(),
         city = city,
         imageUrl = images.map { it.url }.firstOrNull(),
+        siteUrl = siteURL,
         genre = genres.first()
     )
 }
