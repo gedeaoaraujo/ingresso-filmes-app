@@ -36,6 +36,7 @@ class MoviesList: Fragment() {
         viewModel.loading.observe(viewLifecycleOwner){ loading ->
             binding.loading.changeVisibility(loading)
             binding.moviesList.changeVisibility(loading.not())
+            binding.swipe.isRefreshing = loading
         }
 
         val movieListAdapter = MovieListAdapter { id ->
@@ -54,6 +55,10 @@ class MoviesList: Fragment() {
 
         binding.searchText.doOnTextChanged { text, _, _, _ ->
             movieListAdapter.searchText(text.toString())
+        }
+
+        binding.swipe.setOnRefreshListener {
+            viewModel.loadMovies()
         }
     }
 }
