@@ -1,5 +1,6 @@
 package com.ingresso.filmes.local
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -12,6 +13,6 @@ interface MovieDao {
     suspend fun insertMovies(movies: List<MovieEntity>)
 
     @Query("SELECT * FROM movie")
-    suspend fun listAll(): List<MovieEntity>
+    fun listAll(): LiveData<List<MovieEntity>>
 
 }

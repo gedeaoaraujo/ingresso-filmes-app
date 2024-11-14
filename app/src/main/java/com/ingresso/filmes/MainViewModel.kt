@@ -18,8 +18,7 @@ class MainViewModel(
     private val repository: IngressoRepository
 ): ViewModel() {
 
-    private val _movies = MutableLiveData<List<MovieResponse>>()
-    val movies: LiveData<List<MovieResponse>> = _movies
+    val movies = repository.listAllMovies()
 
     private val _loading = MutableLiveData<Boolean>()
     val loading: LiveData<Boolean> = _loading
@@ -39,8 +38,7 @@ class MainViewModel(
     fun loadMovies() = viewModelScope.launch {
         try {
             _loading.postValue(true)
-            val movies = repository.loadMovies()
-            _movies.postValue(movies)
+            repository.loadMovies()
         } catch (t: UnknownHostException){
             Log.e("Error", t.message.orEmpty())
             _error.postValue(Error(isServerError = true))
