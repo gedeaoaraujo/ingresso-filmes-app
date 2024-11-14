@@ -21,11 +21,11 @@ class IngressoRepository(
         return movieDao.listAll()
     }
 
-    suspend fun bookmarkMovie(id: String) {
+    suspend fun bookmarkMovie(id: Int) {
         movieDao.bookmarkMovie(id)
     }
 
-    suspend fun removeBookmark(id: String) {
+    suspend fun removeBookmark(id: Int) {
         movieDao.removeBookmark(id)
     }
 

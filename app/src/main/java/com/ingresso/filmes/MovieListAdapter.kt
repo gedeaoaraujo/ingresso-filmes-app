@@ -10,7 +10,7 @@ import com.ingresso.filmes.databinding.MovieItemBinding
 import com.ingresso.filmes.local.MovieEntity
 
 class MovieListAdapter(
-    private val onMovieSelected: (String) -> Unit = {}
+    private val onMovieSelected: (Int) -> Unit = {}
 ): RecyclerView.Adapter<MovieListAdapter.MovieViewHolder>(){
 
     private var list: List<MovieEntity> = listOf()

@@ -26,7 +26,7 @@ class MainViewModel(
     private val _error = MutableLiveData<Error>()
     val error: LiveData<Error> = _error
 
-    var selectedMovieId: String = "0"
+    var selectedMovieId: Int = 0
         private set
 
     init {
@@ -48,18 +48,16 @@ class MainViewModel(
         }
     }
 
-    fun setSelectedMovie(id: String) {
+    fun setSelectedMovie(id: Int) {
         selectedMovieId = id
     }
 
-    fun setStarredMovie(id: String?) = viewModelScope.launch {
-        if (id.orEmpty().isBlank()) return@launch
-        repository.bookmarkMovie(id!!)
+    fun setStarredMovie(id: Int) = viewModelScope.launch {
+        repository.bookmarkMovie(id)
     }
 
-    fun removeStarredMovie(id: String?) = viewModelScope.launch {
-        if (id.orEmpty().isBlank()) return@launch
-        repository.removeBookmark(id!!)
+    fun removeStarredMovie(id: Int) = viewModelScope.launch {
+        repository.removeBookmark(id)
     }
 
 }

@@ -16,9 +16,9 @@ interface MovieDao {
     fun listAll(): LiveData<List<MovieEntity>>
 
     @Query("UPDATE movie SET starred = 1 WHERE movie.id = :id")
-    suspend fun bookmarkMovie(id: String)
+    suspend fun bookmarkMovie(id: Int)
 
     @Query("UPDATE movie SET starred = 0 WHERE movie.id = :id")
-    suspend fun removeBookmark(id: String)
+    suspend fun removeBookmark(id: Int)
 
 }

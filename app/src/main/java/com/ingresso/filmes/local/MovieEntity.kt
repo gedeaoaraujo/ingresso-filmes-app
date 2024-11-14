@@ -1,12 +1,17 @@
 package com.ingresso.filmes.local
 
 import androidx.room.Entity
+import androidx.room.Index
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "movie")
+@Entity(
+    tableName = "movie",
+    indices = [Index(value = ["apiId"], unique = true)]
+)
 data class MovieEntity(
-    @PrimaryKey
-    val id: String,
+    @PrimaryKey(autoGenerate = true)
+    var id: Int = 0,
+    val apiId: String,
     val title: String,
     val contentRating: String,
     val duration: String,

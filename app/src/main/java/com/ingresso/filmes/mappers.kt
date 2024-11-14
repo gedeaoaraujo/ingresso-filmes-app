@@ -5,7 +5,7 @@ import com.ingresso.filmes.remote.responses.MovieResponse
 
 fun MovieResponse.toEntity(): MovieEntity {
     return MovieEntity(
-        id = id,
+        apiId = id,
         title = title,
         contentRating = contentRating,
         duration = duration,
