@@ -35,17 +35,18 @@ class MovieDetails: Fragment() {
 
         viewModel.movies.observe(viewLifecycleOwner){ movies ->
             val movie = movies.find { it.id == viewModel.selectedMovieId }
+            if (movie == null) return@observe
 
-            movie?.imageUrl?.also { imageUrl ->
+            movie.imageUrl?.also { imageUrl ->
                 binding.poster.load(imageUrl)
             }
 
-            binding.star.isSelected = movie?.starred == true
+            binding.star.isSelected = movie.starred == true
             binding.star.setOnClickListener {
                 if (binding.star.isSelected.not()){
-                    viewModel.setStarredMovie(movie?.id)
+                    viewModel.setStarredMovie(movie.id)
                 } else {
-                    viewModel.removeStarredMovie(movie?.id)
+                    viewModel.removeStarredMovie(movie.id)
                 }
                 binding.star.isSelected = !binding.star.isSelected
             }
