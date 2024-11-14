@@ -61,8 +61,9 @@ class MovieDetails: Fragment() {
                 requireContext().startActivity(chooser)
             }
 
-            binding.movieName.text = movie.title
-            binding.synopsisText.text = movie.synopsis
+            binding.name.text = movie.title
+            binding.date.text = movie.localDate.toBrDate().ifBlank { "Desconhecida" }
+            binding.synopsisText.text = movie.synopsis.replace("\n", "")
             binding.genre.text = buildString {
                 append("Gênero\n"); append(movie.genre)
             }
@@ -74,6 +75,11 @@ class MovieDetails: Fragment() {
 
             binding.city.text = buildString {
                 append("Cidade: "); append(movie.city)
+            }
+
+            binding.distributor.text = buildString {
+                append("Distribuidor: ")
+                append(movie.distributor.ifBlank { "Desconhecido" })
             }
 
             binding.contentRating.text = buildString {
