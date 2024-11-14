@@ -13,8 +13,7 @@ class IngressoRepository(
     suspend fun loadMovies() {
         val response = service.getMovies()
         val items = response.body()?.items
-        val list = items?.sortedBy { it.premiereDate?.localDate }
-        val entities = list.orEmpty().map { it.toEntity() }
+        val entities = items.orEmpty().map { it.toEntity() }
         movieDao.insertMovies(entities)
     }
 
