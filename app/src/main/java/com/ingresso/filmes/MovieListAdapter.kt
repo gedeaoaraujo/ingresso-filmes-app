@@ -35,7 +35,7 @@ class MovieListAdapter(
     ): RecyclerView.ViewHolder(binding.root){
         fun bind(item: MovieEntity) {
             binding.title.text = item.title
-            binding.premiereDate.text = item.localDate.toBrDate()
+            binding.premiereDate.text = item.localDate.toBrDate().ifBlank { "Desconhecida" }
             item.imageUrl?.also { imageUrl -> binding.cover.load(imageUrl) }
 
             binding.genre.text = item.genre
