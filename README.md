@@ -5,6 +5,6 @@ Um aplicativo criado para te ajudar a pesquisar e salvar os últimos filmes disp
 
 ## Screenshots
 
-![Lista de filmes](https://github.com/gedeaoaraujo/desafio-mobile-ingresso/blob/main/screenshot_20241223_184210.png)
+<img src="https://github.com/gedeaoaraujo/desafio-mobile-ingresso/blob/main/screenshot_20241223_184210.png" alt="Lista de filmes" width="200"/>
 
-![Detalhes do filme](https://github.com/gedeaoaraujo/desafio-mobile-ingresso/blob/main/screenshot_20241223_184320.png)
+<img src="https://github.com/gedeaoaraujo/desafio-mobile-ingresso/blob/main/screenshot_20241223_184320.png" alt="Detalhes do filme" width="200"/>
